@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar(props) {
   return (
-    <nav className={`navbar navbar-expand-lg navbar-${props.mode==="light"?"light":"dark"} bg-${props.mode==="light"?"light":"dark"}`}>
+    <nav className={`navbar navbar-expand-lg navbar-${document.body.style.backgroundColor==="white"?"dark":"light" || props.mode==="light"?"white":"dark"} bg-${document.body.style.backgroundColor==="white"?"dark":"light" || props.mode==="light"?"light":"dark"}`}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="#">{props.title}</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,10 +23,10 @@ export default function Navbar(props) {
           </ul>
 
           <div className="d-flex">
-            <div className="bg-primary rounded mx-2" style={{ height: "25px", width: "30px" }} onClick={() => { props.toggleMode("primary") }}></div>
-            <div className="bg-success rounded mx-2" style={{ height: "25px", width: "30px" }} onClick={() => { props.toggleMode("success") }}></div>
-            <div className="bg-danger rounded mx-2" style={{ height: "25px", width: "30px" }} onClick={() => { props.toggleMode("danger") }}></div>
-            <div className="bg-warning rounded mx-2" style={{ height: "25px", width: "30px" }} onClick={() => { props.toggleMode("warning") }}></div>
+            <div className="bg-primary rounded mx-2" style={{ height: "25px", width: "30px" }} onClick={() => { props.toggleMode("primary") || props.clrbtns()}} ></div>
+            <div className="bg-success rounded mx-2" style={{ height: "25px", width: "30px" }} onClick={() => { props.toggleMode("success") || props.clrbtns()}}></div>
+            <div className="bg-danger rounded mx-2" style={{ height: "25px", width: "30px" }} onClick={() => { props.toggleMode("danger") || props.clrbtns()}}></div>
+            <div className="bg-warning rounded mx-2" style={{ height: "25px", width: "30px" }} onClick={() => { props.toggleMode("warning") || props.clrbtns()}}></div>
 
 
           </div>

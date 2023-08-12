@@ -1,10 +1,11 @@
-// import logo from './logo.svg';
+import React from 'react'
 import { useState } from 'react';
 import './App.css';
 import About from './Components/About';
 import Alerts from './Components/Alerts';
 import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -28,7 +29,29 @@ function App() {
     }, 1500);
   }
 
-  const removeBodyCls=()=>{
+  const clrbtns = () => {
+    
+    var el = document.getElementsByClassName("bt");
+    if (document.body.className === "bg-primary") {
+      for (let i = 0; i < el.length; i++) {
+        el[i].style.backgroundColor = "blue";
+        el[i].style.border="2px solid white";
+      }
+    }
+
+    else if (document.body.className === "bg-danger") {
+      
+      console.log("hello")
+      for (let i = 0; i < el.length; i++) {
+        
+        el[i].style.backgroundColor = "gray";
+        el[i].style.border="2px solid black";
+      }
+    }
+    
+  }
+
+  const removeBodyCls = () => {
     document.body.classList.remove("bg-light");
     document.body.classList.remove("bg-dark");
     document.body.classList.remove("bg-success");
@@ -39,13 +62,13 @@ function App() {
 
   const toggleMode = (cls) => {
     removeBodyCls();
-    document.body.classList.add("bg-"+cls);
+    document.body.classList.add("bg-" + cls);
 
-    if (mode === "light" && cls===null) {
+    if (mode === "light" && cls === null) {
       setMode("dark");
       document.body.style.backgroundColor = "#042743";
       showAlerts("Dark mode has been enabled", "success")
-     
+
 
       setInterval(() => {
         document.title = "My app is amazing";
@@ -61,24 +84,24 @@ function App() {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlerts("Light mode has been enabled", "success")
-     
+
     }
   }
 
   return (
     <>
-    <Router>
-      <Navbar title="My App1" aboutText="About My App" mode={mode} toggleMode={toggleMode} />
+      <Router>
+        <Navbar title="My App1" aboutText="About My App" mode={mode} toggleMode={toggleMode} clrbtns={clrbtns} />
 
-      <Alerts alert={alert} />
+        <Alerts alert={alert} />
 
-      <div className="container">
-      
-      <Routes>
-        <Route exact path='/' element={<TextForm heading="Try Myapp - Word Counter,Character counter,Replace text" mode={mode} showAlerts={showAlerts}/>}></Route>
-        <Route exact path='/About' element={<About mode={mode}/>}></Route>
-        </Routes>
-        
+        <div className="container">
+
+          <Routes>
+            <Route exact path='/' element={<TextForm heading="Try Myapp - Word Counter,Character counter,Replace text" mode={mode} showAlerts={showAlerts}/>}></Route>
+            <Route exact path='/About' element={<About mode={mode} />}></Route>
+          </Routes>
+
         </div>
       </Router>
     </>
